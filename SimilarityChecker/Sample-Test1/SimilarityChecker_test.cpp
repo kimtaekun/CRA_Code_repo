@@ -3,7 +3,7 @@
 
 class SimilarityCheckerFixtrue : public testing::Test {
 public:
-	SimilarityChecker checker{ "ABCDE" };
+	SimilarityChecker checker{ "AAABB" };
 };
 
 TEST(SimilarityCheckerTest, ExceptionOccurWhenTargetInvalidChar) {
@@ -34,5 +34,12 @@ TEST_F(SimilarityCheckerFixtrue, GetPartialScoreWhenLengthOvertwice) {
 }
 
 TEST_F(SimilarityCheckerFixtrue, Get40ScoreWhenMatchedAlpha) {
-	EXPECT_EQ(checker.get_alpha_score("ABCDE"), 40);
+	EXPECT_EQ(checker.get_alpha_score("AB"), 40);
+}
+TEST_F(SimilarityCheckerFixtrue, Get0ScoreWhenNotmatchAll) {
+	EXPECT_EQ(checker.get_alpha_score("XYZ"), 0);
+}
+TEST_F(SimilarityCheckerFixtrue, GetPartialScoreWhenNotmatchAll) {
+	EXPECT_EQ(checker.get_alpha_score("AAAA"), 20);
+	EXPECT_EQ(checker.get_alpha_score("BB"), 20);
 }
