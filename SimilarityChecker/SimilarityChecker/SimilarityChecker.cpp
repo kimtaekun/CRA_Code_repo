@@ -13,7 +13,8 @@ public:
 	int get_length_score(std::string matched_str) {
 		throw_exception_not_all_upper_char(matched_str);
 		if (matched_str.length() == target.length()) return 60;
-		return 0;
+		if (check_over_twice(matched_str.length())) return 0;
+		return get_parial_score(matched_str.length());
 	}
 
 private:
@@ -23,4 +24,18 @@ private:
 			throw std::invalid_argument("Must be use Upper string");
 		}
 	}
+
+	int get_parial_score(size_t matched_length) {
+		int diff_length = std::abs((int)(matched_length - target.length()));
+		int min_length = matched_length > target.length() ? target.length() : matched_length;
+		return (1 - (double)diff_length / min_length) * 60;
+	}
+
+	bool check_over_twice(size_t matched_length)
+	{
+		int diff_length = std::abs((int)(matched_length - target.length()));
+		int min_length = matched_length > target.length() ? target.length() : matched_length;
+		return diff_length >= min_length;
+	}
+
 };
