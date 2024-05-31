@@ -17,6 +17,11 @@ public:
 		return get_parial_score(matched_str.length());
 	}
 
+	int get_alpha_score(std::string matched_str) {
+		throw_exception_not_all_upper_char(matched_str);
+		if (matched_str == target) return 40;
+		return 0;
+	}
 private:
 	std::string target;
 	void throw_exception_not_all_upper_char(std::string str) {
