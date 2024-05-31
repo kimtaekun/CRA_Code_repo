@@ -6,6 +6,16 @@ public:
 	SimilarityChecker checker{ "ABC" };
 };
 
+TEST(SimilarityCheckerTest, ExceptionOccurWhenTargetInvalidChar) {
+	try {
+		SimilarityChecker checker_except{ "abc" };
+		FAIL();
+	}
+	catch (std::invalid_argument) {
+		// PASS
+	}	
+}
+
 TEST_F(SimilarityCheckerFixtrue, ExceptionOccurWhenInvalidChar) {
 	EXPECT_THROW(checker.get_length_score("abc"), std::invalid_argument);
 }
