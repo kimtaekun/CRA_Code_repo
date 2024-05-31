@@ -22,3 +22,7 @@ TEST_F(SimilarityCheckerFixtrue, ExceptionOccurWhenInvalidChar) {
 TEST_F(SimilarityCheckerFixtrue, Get60ScoreWhenMatchedLength) {
 	EXPECT_EQ(checker.get_length_score("ABC"), 60);
 }
+TEST_F(SimilarityCheckerFixtrue, Get0ScoreWhenLengthOvertwice) {
+	EXPECT_EQ(checker.get_length_score("A"), 0);
+	EXPECT_EQ(checker.get_length_score("ABCDEF"), 0);
+}
